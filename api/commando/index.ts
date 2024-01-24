@@ -1,19 +1,19 @@
-import Controller from './controllers/controller'
-import Routes from './routes/routes'
+import { Express } from 'express';
+import Controller from './controllers/controller';
+import Routes from './routes/routes';
 
 export class Commando {
-	protected App: any;
-	protected database: any;
-	protected controller:Controller;
-	protected Routes: any;
+  protected App: Express;
+  protected database;
+  protected controller: Controller;
+  protected Routes: Routes;
 
-	constructor(app:any, database: any) {
-		this.App = app;
-		this.database = database
-		this.controller = new Controller(this.database)
-		
-		// initiate routes
-		this.Routes = new Routes(this.App, this.controller)
-		this.Routes.init()
-	}
+  constructor(app: Express, database) {
+    this.App = app;
+    this.database = database;
+    this.controller = new Controller();
+
+    this.Routes = new Routes(this.App, this.controller);
+    this.Routes.init();
+  }
 }

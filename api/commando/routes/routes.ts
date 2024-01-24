@@ -1,19 +1,22 @@
-import Controller from '../controllers/controller'
+import { Router, Request, Response } from 'express';
+import Controller from '../controllers/controller';
 
 class Routes {
-	protected Controller: Controller;
-	protected App: any;
-	protected Router: any;
-	protected MainRoute: string = '/commando'
+  protected Controller: Controller;
+  protected App;
+  protected Router: Router;
+  protected MainRoute: string = '/commando';
 
-	constructor (app:any, controller: Controller) {
-		this.App = app;
-		this.Controller = controller
-	}
+  constructor(app, controller: Controller) {
+    this.App = app;
+    this.Controller = controller;
+  }
 
-	init() {
-	 	this.App.get(this.MainRoute + '/:commando', (req: any, res: any) => this.Controller.runCommando(req, res))
-	}
+  init() {
+    this.App.get(this.MainRoute + '/:commando', (req: Request, res: Response) =>
+      this.Controller.runCommando(req, res)
+    );
+  }
 }
 
-export default Routes
+export default Routes;

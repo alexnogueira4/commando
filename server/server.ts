@@ -1,13 +1,15 @@
-var server:any = null
+import { Server } from 'net';
 
-function start (app, api:any, Database:any, callback:any) {
-  new api(app, Database)
-  callback.apply()
+const server: Server = null;
+
+function start(app, api, Database, callback) {
+  new api(app, Database);
+  callback.apply();
 }
 
-function stop () {
-  if (server) server.close()
-  return true
+function stop() {
+  if (server) server.close();
+  return true;
 }
 
-export default { start, stop }
+export default { start, stop };
